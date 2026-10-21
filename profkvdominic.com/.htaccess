@@ -1,0 +1,18 @@
+# Hostinger / LiteSpeed PHP 8.4 Handler
+<FilesMatch "\.(php4|php5|php7|php8|php|phtml)$">
+  SetHandler application/x-lsphp84
+</FilesMatch>
+
+# cPanel ea-php84 Handler Fallback
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
+</IfModule>
+
+# Security: Block direct public access to database dump and sensitive backups
+<FilesMatch "\.(sql|bak|config|env)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Security: Disable directory browsing
+Options -Indexes
